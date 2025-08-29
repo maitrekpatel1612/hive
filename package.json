@@ -2,7 +2,9 @@
   "name": "@hive/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "dev": "npx nx run-many --target=dev --all"
+  },
   "private": true,
   "dependencies": {
     "axios": "^1.6.0",
