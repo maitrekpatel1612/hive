@@ -14,4 +14,26 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+//~ User
+model users {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String   @unique
+  password  String?
+  following String[]
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  images    images[]
+}
 
+//~ Images
+model images {
+  id      String  @id @default(auto()) @map("_id") @db.ObjectId
+  file_id String
+  url     String
+  userId  String? @db.ObjectId
+  users   users?  @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// user and image have one to many relationship i.e one user can have many images but one image can belong to only one user
